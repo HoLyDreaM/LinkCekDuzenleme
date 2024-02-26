@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Ds" targetNamespace="http://tempuri.org/Ds.xsd" xmlns:mstns="http://tempuri.org/Ds.xsd" xmlns="http://tempuri.org/Ds.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Cs1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Cs1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.FistasCekDuzenleme.Properties.Settings.GlobalReference.Default.Cs1" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CeklerTableAdapter" GeneratorDataComponentClassName="CeklerTableAdapter" Name="Cekler" UserDataComponentName="CeklerTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Cs1 (Settings)" DbObjectName="YNS00100.YNS00100.SCS003" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT 3 AS ID, SCS003_CekNo AS CekNo, SCS003_HesapKodu AS HesapKodu, (CASE SCS003_CekTipi 
+WHEN '1' THEN SCS003_Tutar
+WHEN '2' THEN SCS003_DovizTutari1 END) AS Tutar, 
+CONVERT(DATETIME,SCS003_VadeTarihi-2,102) AS VadeTarihi,SCS003_Duzenleyen AS Duzenleyen, SCS003_DuzenleyenUnvani1 AS DuzenleyenUnvani, 
+SCS003_DovizCinsi AS DovizCinsi, (CASE SCS003_DovizCinsi 
+WHEN 'USD' THEN(dbo.fn_DovizKuru(41443,2)) 
+WHEN 'EUR' THEN(dbo.fn_DovizKuru(41443,4)) 
+WHEN 'GBP' THEN(dbo.fn_DovizKuru(41443,6)) 
+WHEN 'CHF' THEN(dbo.fn_DovizKuru(41443,8)) 
+END) AS DovizKuru, CAST((CASE SCS003_CekTipi WHEN '1' THEN (SCS003_Tutar / (CASE SCS003_DovizCinsi 
+WHEN 'USD' THEN(dbo.fn_DovizKuru(41443,2)) 
+WHEN 'EUR' THEN(dbo.fn_DovizKuru(41443,4)) 
+WHEN 'GBP' THEN(dbo.fn_DovizKuru(41443,6)) 
+WHEN 'CHF' THEN(dbo.fn_DovizKuru(41443,8)) 
+END))
+WHEN '2' THEN SCS003_DovizTutari1 * (CASE SCS003_DovizCinsi 
+WHEN 'USD' THEN(dbo.fn_DovizKuru(41443,2)) 
+WHEN 'EUR' THEN(dbo.fn_DovizKuru(41443,4)) 
+WHEN 'GBP' THEN(dbo.fn_DovizKuru(41443,6)) 
+WHEN 'CHF' THEN(dbo.fn_DovizKuru(41443,8)) 
+END)
+ END)AS DECIMAL(21,2)) DovizTutari,(CASE SCS003_CekTipi 
+WHEN '1' THEN 'Yerel' 
+WHEN '2' THEN 'Doviz' 
+END) AS CekTipi FROM  SCS003 WHERE (SCS003_VadeTarihi &gt;= 41473) AND SCS003_CH1='1' AND SCS003_DovizCinsi&lt;&gt;'' And SCS003_DovizCinsi IN 
+(Select CAR002_ParaBirimi FROM  CAR002 
+Where CAR002_HesapKodu=SCS003_HesapKodu) 
+Order By ID ASC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="CekNo" DataSetColumn="CekNo" />
+              <Mapping SourceColumn="HesapKodu" DataSetColumn="HesapKodu" />
+              <Mapping SourceColumn="Tutar" DataSetColumn="Tutar" />
+              <Mapping SourceColumn="VadeTarihi" DataSetColumn="VadeTarihi" />
+              <Mapping SourceColumn="Duzenleyen" DataSetColumn="Duzenleyen" />
+              <Mapping SourceColumn="DuzenleyenUnvani" DataSetColumn="DuzenleyenUnvani" />
+              <Mapping SourceColumn="DovizCinsi" DataSetColumn="DovizCinsi" />
+              <Mapping SourceColumn="DovizKuru" DataSetColumn="DovizKuru" />
+              <Mapping SourceColumn="DovizTutari" DataSetColumn="DovizTutari" />
+              <Mapping SourceColumn="CekTipi" DataSetColumn="CekTipi" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CariKontrolCekleriTableAdapter" GeneratorDataComponentClassName="CariKontrolCekleriTableAdapter" Name="CariKontrolCekleri" UserDataComponentName="CariKontrolCekleriTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Cs1 (Settings)" DbObjectName="YNS00100.YNS00100.CAR003" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [YNS00100].[CAR003] ([CAR003_HesapKodu], [CAR003_IslemTipi], [CAR003_EvrakSeriNo], [CAR003_DovizCinsi]) VALUES (@HesapKodu, @IslemTipi, @EvrakSeriNo, @DovizCinsi)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@HesapKodu" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="HesapKodu" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@IslemTipi" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="IslemTipi" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@EvrakSeriNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="EvrakSeriNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@DovizCinsi" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="DovizCinsi" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select 3 AS ID,CAR003_HesapKodu AS HesapKodu,CONVERT(DATETIME,CAR003_Tarih-2,102) AS Tarih,CAR003_IslemTipi AS IslemTipi, 
+CAR003_EvrakSeriNo AS EvrakSeriNo,CAST((CASE CAR003_ParaBirimi 
+WHEN '2' THEN CAR003_DovizTutari * (CASE CAR003_DovizCinsi 
+WHEN 'USD' THEN(dbo.fn_DovizKuru(41443,2)) 
+WHEN 'EUR' THEN(dbo.fn_DovizKuru(41443,4)) 
+WHEN 'GBP' THEN(dbo.fn_DovizKuru(41443,6)) 
+WHEN 'CHF' THEN(dbo.fn_DovizKuru(41443,8))END)
+WHEN '1' THEN CAR003_Tutar END)AS DECIMAL(21,2)) AS Tutar,(CASE CAR003_ParaBirimi 
+WHEN '2' THEN CAR003_Tutar WHEN '1' THEN CAR003_DovizTutari END) AS EskiTutar,
+CONVERT(DATETIME,CAR003_VadeTarihi-2,102) AS VadeTarihi,  
+(CASE CAR003_ParaBirimi 
+WHEN '1' THEN 'Yerel' 
+WHEN '2' THEN 'Doviz' 
+END) AS ParaBirimi,CAR003_DovizCinsi AS DovizCinsi,
+(CASE CAR003_ParaBirimi WHEN '1' THEN
+CAR003_DovizTutari + (CAST((CASE CAR003_ParaBirimi 
+WHEN '2' THEN ((CAR003_DovizTutari * (CASE CAR003_DovizCinsi 
+WHEN 'USD' THEN(dbo.fn_DovizKuru(41443,2)) 
+WHEN 'EUR' THEN(dbo.fn_DovizKuru(41443,4)) 
+WHEN 'GBP' THEN(dbo.fn_DovizKuru(41443,6)) 
+WHEN 'CHF' THEN(dbo.fn_DovizKuru(41443,8)) 
+END))- CAR003_Tutar) WHEN '1' THEN CAR003_DovizTutari - CAR003_Tutar / 
+(CASE CAR003_DovizCinsi 
+WHEN 'USD' THEN(dbo.fn_DovizKuru(41443,2)) 
+WHEN 'EUR' THEN(dbo.fn_DovizKuru(41443,4)) 
+WHEN 'GBP' THEN(dbo.fn_DovizKuru(41443,6)) 
+WHEN 'CHF' THEN(dbo.fn_DovizKuru(41443,8)) 
+END)  END)AS DECIMAL(21,2))*-1) WHEN '2' THEN CAR003_DovizTutari END) AS DovizTutari,
+(CASE CAR003_DovizCinsi 
+WHEN 'USD' THEN(dbo.fn_DovizKuru(41443,2)) 
+WHEN 'EUR' THEN(dbo.fn_DovizKuru(41443,4)) 
+WHEN 'GBP' THEN(dbo.fn_DovizKuru(41443,6)) 
+WHEN 'CHF' THEN(dbo.fn_DovizKuru(41443,8)) 
+END) AS DovizKuru,CAST((CASE CAR003_ParaBirimi 
+WHEN '2' THEN ((CAR003_DovizTutari * (CASE CAR003_DovizCinsi 
+WHEN 'USD' THEN(dbo.fn_DovizKuru(41443,2)) 
+WHEN 'EUR' THEN(dbo.fn_DovizKuru(41443,4)) 
+WHEN 'GBP' THEN(dbo.fn_DovizKuru(41443,6)) 
+WHEN 'CHF' THEN(dbo.fn_DovizKuru(41443,8)) 
+END))- CAR003_Tutar) WHEN '1' THEN (CAR003_DovizTutari - (CAR003_Tutar / 
+(CASE CAR003_DovizCinsi 
+WHEN 'USD' THEN(dbo.fn_DovizKuru(41443,2)) 
+WHEN 'EUR' THEN(dbo.fn_DovizKuru(41443,4)) 
+WHEN 'GBP' THEN(dbo.fn_DovizKuru(41443,6)) 
+WHEN 'CHF' THEN(dbo.fn_DovizKuru(41443,8)) 
+END)))  END)AS DECIMAL(21,2)) AS Fark From YNS00100.CAR003 
+Where CAR003_EvrakTipi='70' AND CAR003_VadeTarihi &gt;= 41473 And CAR003_DovizCinsi&lt;&gt;'' And CAR003_DovizCinsi&lt;&gt;'TL' And 
+CAR003_DovizCinsi IN 
+(Select CAR002_ParaBirimi 
+FROM YNS00100.CAR002 Where 
+CAR002_HesapKodu=CAR003_HesapKodu) 
+ORDER BY ID ASC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="HesapKodu" DataSetColumn="HesapKodu" />
+              <Mapping SourceColumn="Tarih" DataSetColumn="Tarih" />
+              <Mapping SourceColumn="IslemTipi" DataSetColumn="IslemTipi" />
+              <Mapping SourceColumn="EvrakSeriNo" DataSetColumn="EvrakSeriNo" />
+              <Mapping SourceColumn="Tutar" DataSetColumn="Tutar" />
+              <Mapping SourceColumn="EskiTutar" DataSetColumn="EskiTutar" />
+              <Mapping SourceColumn="VadeTarihi" DataSetColumn="VadeTarihi" />
+              <Mapping SourceColumn="ParaBirimi" DataSetColumn="ParaBirimi" />
+              <Mapping SourceColumn="DovizCinsi" DataSetColumn="DovizCinsi" />
+              <Mapping SourceColumn="DovizTutari" DataSetColumn="DovizTutari" />
+              <Mapping SourceColumn="DovizKuru" DataSetColumn="DovizKuru" />
+              <Mapping SourceColumn="Fark" DataSetColumn="Fark" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CariCikisKontrolCekleriTableAdapter" GeneratorDataComponentClassName="CariCikisKontrolCekleriTableAdapter" Name="CariCikisKontrolCekleri" UserDataComponentName="CariCikisKontrolCekleriTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Cs1 (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        '' AS CariID, CAR003.CAR003_HesapKodu AS HesapKodu, CONVERT(DATETIME, CAR003.CAR003_Tarih - 2, 102) AS Tarih, CAR003.CAR003_IslemTipi AS IslemTipi, 
+                         CAR003.CAR003_EvrakSeriNo AS EvrakSeriNo, CAR003.CAR003_Tutar AS Tutar, CONVERT(DATETIME, CAR003.CAR003_VadeTarihi - 2, 102) AS VadeTarihi, 
+                         CAR003.CAR003_ParaBirimi AS ParaBirimi, CAR002.CAR002_ParaBirimi AS DovizCinsi, CAR003.CAR003_DovizKuru AS DovizKuru, '833,33' AS EskiDoviz, 
+                         '833,33' AS DovizFarki, CAR003.CAR003_DovizTutari AS YeniDoviz
+FROM            YNS02012.CAR003 AS CAR003 INNER JOIN
+                         YNS02012.CAR002 AS CAR002 ON CAR003.CAR003_HesapKodu = CAR002.CAR002_HesapKodu</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CariID" DataSetColumn="CariID" />
+              <Mapping SourceColumn="HesapKodu" DataSetColumn="HesapKodu" />
+              <Mapping SourceColumn="Tarih" DataSetColumn="Tarih" />
+              <Mapping SourceColumn="IslemTipi" DataSetColumn="IslemTipi" />
+              <Mapping SourceColumn="EvrakSeriNo" DataSetColumn="EvrakSeriNo" />
+              <Mapping SourceColumn="Tutar" DataSetColumn="Tutar" />
+              <Mapping SourceColumn="VadeTarihi" DataSetColumn="VadeTarihi" />
+              <Mapping SourceColumn="ParaBirimi" DataSetColumn="ParaBirimi" />
+              <Mapping SourceColumn="DovizCinsi" DataSetColumn="DovizCinsi" />
+              <Mapping SourceColumn="DovizKuru" DataSetColumn="DovizKuru" />
+              <Mapping SourceColumn="EskiDoviz" DataSetColumn="EskiDoviz" />
+              <Mapping SourceColumn="DovizFarki" DataSetColumn="DovizFarki" />
+              <Mapping SourceColumn="YeniDoviz" DataSetColumn="YeniDoviz" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources>
+          <DbSource ConnectionRef="Cs1 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SCS003YerelParaGuncelleme" MethodsParameterType="CLR" Modifier="Public" Name="SCS003YerelParaGuncelleme" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="SCS003YerelParaGuncelleme">
+            <UpdateCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>UPDATE SCS003 SET SCS003_DovizKuru1=@DovizKuru,SCS003_DovizTutari1=@DovizTutari
+WHERE SCS003_Row_ID=@ID</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="DovizKuru" ColumnName="SCS003_DovizKuru1" DataSourceName="YNS00100.YNS00100.SCS003" DataTypeServer="numeric(15, 6)" DbType="Decimal" Direction="Input" ParameterName="@DovizKuru" Precision="15" ProviderType="Decimal" Scale="6" Size="9" SourceColumn="SCS003_DovizKuru1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="DovizTutari" ColumnName="SCS003_DovizTutari1" DataSourceName="YNS00100.YNS00100.SCS003" DataTypeServer="numeric(19, 2)" DbType="Decimal" Direction="Input" ParameterName="@DovizTutari" Precision="19" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="SCS003_DovizTutari1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="false" AutogeneratedName="ID" ColumnName="SCS003_Row_ID" DataSourceName="YNS00100.YNS00100.SCS003" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="SCS003_Row_ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                </Parameters>
+              </DbCommand>
+            </UpdateCommand>
+          </DbSource>
+          <DbSource ConnectionRef="Cs1 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SCS003DovizParaGuncelleme" MethodsParameterType="CLR" Modifier="Public" Name="SCS003DovizParaGuncelleme" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="SCS003DovizParaGuncelleme">
+            <UpdateCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>UPDATE SCS003 SET SCS003_DovizKuru1=@DovizKuru,SCS003_Tutar=@Tutar
+WHERE SCS003_Row_ID=@ID</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="DovizKuru" ColumnName="SCS003_DovizKuru1" DataSourceName="YNS00100.YNS00100.SCS003" DataTypeServer="numeric(15, 6)" DbType="Decimal" Direction="Input" ParameterName="@DovizKuru" Precision="15" ProviderType="Decimal" Scale="6" Size="9" SourceColumn="SCS003_DovizKuru1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="Tutar" ColumnName="SCS003_Tutar" DataSourceName="YNS00100.YNS00100.SCS003" DataTypeServer="numeric(21, 2)" DbType="Decimal" Direction="Input" ParameterName="@Tutar" Precision="21" ProviderType="Decimal" Scale="2" Size="13" SourceColumn="SCS003_Tutar" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="false" AutogeneratedName="ID" ColumnName="SCS003_Row_ID" DataSourceName="YNS00100.YNS00100.SCS003" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="SCS003_Row_ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                </Parameters>
+              </DbCommand>
+            </UpdateCommand>
+          </DbSource>
+          <DbSource ConnectionRef="Cs1 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="CAR003DovizParaGuncelleme" MethodsParameterType="CLR" Modifier="Public" Name="CAR003DovizParaGuncelleme" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="CAR003DovizParaGuncelleme">
+            <UpdateCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>UPDATE  CAR003 SET CAR003_DovizKuru=@DovizKuru,CAR003_Tutar=@Tutar
+WHERE CAR003_Row_ID=@ID</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="DovizKuru" ColumnName="CAR003_DovizKuru" DataSourceName="YNS00100.YNS00100.CAR003" DataTypeServer="numeric(15, 6)" DbType="Decimal" Direction="Input" ParameterName="@DovizKuru" Precision="15" ProviderType="Decimal" Scale="6" Size="9" SourceColumn="CAR003_DovizKuru" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="Tutar" ColumnName="CAR003_Tutar" DataSourceName="YNS00100.YNS00100.CAR003" DataTypeServer="numeric(21, 2)" DbType="Decimal" Direction="Input" ParameterName="@Tutar" Precision="21" ProviderType="Decimal" Scale="2" Size="13" SourceColumn="CAR003_Tutar" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="false" AutogeneratedName="ID" ColumnName="CAR003_Row_ID" DataSourceName="YNS00100.YNS00100.CAR003" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CAR003_Row_ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                </Parameters>
+              </DbCommand>
+            </UpdateCommand>
+          </DbSource>
+          <DbSource ConnectionRef="Cs1 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="CAR003YerelParaGuncelleme" MethodsParameterType="CLR" Modifier="Public" Name="CAR003YerelParaGuncelleme" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="CAR003YerelParaGuncelleme">
+            <UpdateCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>UPDATE CAR003 SET CAR003_DovizKuru=@DovizKuru,CAR003_DovizTutari=@DovizTutari
+WHERE CAR003_Row_ID=@ID</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="DovizKuru" ColumnName="CAR003_DovizKuru" DataSourceName="YNS00100.YNS00100.CAR003" DataTypeServer="numeric(15, 6)" DbType="Decimal" Direction="Input" ParameterName="@DovizKuru" Precision="15" ProviderType="Decimal" Scale="6" Size="9" SourceColumn="CAR003_DovizKuru" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="DovizTutari" ColumnName="CAR003_DovizTutari" DataSourceName="YNS00100.YNS00100.CAR003" DataTypeServer="numeric(19, 2)" DbType="Decimal" Direction="Input" ParameterName="@DovizTutari" Precision="19" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="CAR003_DovizTutari" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="false" AutogeneratedName="ID" ColumnName="CAR003_Row_ID" DataSourceName="YNS00100.YNS00100.CAR003" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CAR003_Row_ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                </Parameters>
+              </DbCommand>
+            </UpdateCommand>
+          </DbSource>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Ds" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Ds" msprop:Generator_UserDSName="Ds">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Cekler" msprop:Generator_TableClassName="CeklerDataTable" msprop:Generator_TableVarName="tableCekler" msprop:Generator_TablePropName="Cekler" msprop:Generator_RowDeletingName="CeklerRowDeleting" msprop:Generator_RowChangingName="CeklerRowChanging" msprop:Generator_RowEvHandlerName="CeklerRowChangeEventHandler" msprop:Generator_RowDeletedName="CeklerRowDeleted" msprop:Generator_UserTableName="Cekler" msprop:Generator_RowChangedName="CeklerRowChanged" msprop:Generator_RowEvArgName="CeklerRowChangeEvent" msprop:Generator_RowClassName="CeklerRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" minOccurs="0" />
+              <xs:element name="CekNo" msprop:Generator_ColumnVarNameInTable="columnCekNo" msprop:Generator_ColumnPropNameInRow="CekNo" msprop:Generator_ColumnPropNameInTable="CekNoColumn" msprop:Generator_UserColumnName="CekNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HesapKodu" msprop:Generator_ColumnVarNameInTable="columnHesapKodu" msprop:Generator_ColumnPropNameInRow="HesapKodu" msprop:Generator_ColumnPropNameInTable="HesapKoduColumn" msprop:Generator_UserColumnName="HesapKodu" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tutar" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTutar" msprop:Generator_ColumnPropNameInRow="Tutar" msprop:Generator_ColumnPropNameInTable="TutarColumn" msprop:Generator_UserColumnName="Tutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VadeTarihi" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVadeTarihi" msprop:Generator_ColumnPropNameInRow="VadeTarihi" msprop:Generator_ColumnPropNameInTable="VadeTarihiColumn" msprop:Generator_UserColumnName="VadeTarihi" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Duzenleyen" msprop:Generator_ColumnVarNameInTable="columnDuzenleyen" msprop:Generator_ColumnPropNameInRow="Duzenleyen" msprop:Generator_ColumnPropNameInTable="DuzenleyenColumn" msprop:Generator_UserColumnName="Duzenleyen" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DuzenleyenUnvani" msprop:Generator_ColumnVarNameInTable="columnDuzenleyenUnvani" msprop:Generator_ColumnPropNameInRow="DuzenleyenUnvani" msprop:Generator_ColumnPropNameInTable="DuzenleyenUnvaniColumn" msprop:Generator_UserColumnName="DuzenleyenUnvani" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DovizCinsi" msprop:Generator_ColumnVarNameInTable="columnDovizCinsi" msprop:Generator_ColumnPropNameInRow="DovizCinsi" msprop:Generator_ColumnPropNameInTable="DovizCinsiColumn" msprop:Generator_UserColumnName="DovizCinsi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DovizKuru" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDovizKuru" msprop:Generator_ColumnPropNameInRow="DovizKuru" msprop:Generator_ColumnPropNameInTable="DovizKuruColumn" msprop:Generator_UserColumnName="DovizKuru" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DovizTutari" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDovizTutari" msprop:Generator_ColumnPropNameInRow="DovizTutari" msprop:Generator_ColumnPropNameInTable="DovizTutariColumn" msprop:Generator_UserColumnName="DovizTutari" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CekTipi" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCekTipi" msprop:Generator_ColumnPropNameInRow="CekTipi" msprop:Generator_ColumnPropNameInTable="CekTipiColumn" msprop:Generator_UserColumnName="CekTipi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CariKontrolCekleri" msprop:Generator_TableClassName="CariKontrolCekleriDataTable" msprop:Generator_TableVarName="tableCariKontrolCekleri" msprop:Generator_TablePropName="CariKontrolCekleri" msprop:Generator_RowDeletingName="CariKontrolCekleriRowDeleting" msprop:Generator_RowChangingName="CariKontrolCekleriRowChanging" msprop:Generator_RowEvHandlerName="CariKontrolCekleriRowChangeEventHandler" msprop:Generator_RowDeletedName="CariKontrolCekleriRowDeleted" msprop:Generator_UserTableName="CariKontrolCekleri" msprop:Generator_RowChangedName="CariKontrolCekleriRowChanged" msprop:Generator_RowEvArgName="CariKontrolCekleriRowChangeEvent" msprop:Generator_RowClassName="CariKontrolCekleriRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="HesapKodu" msprop:Generator_ColumnVarNameInTable="columnHesapKodu" msprop:Generator_ColumnPropNameInRow="HesapKodu" msprop:Generator_ColumnPropNameInTable="HesapKoduColumn" msprop:Generator_UserColumnName="HesapKodu" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tarih" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTarih" msprop:Generator_ColumnPropNameInRow="Tarih" msprop:Generator_ColumnPropNameInTable="TarihColumn" msprop:Generator_UserColumnName="Tarih" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IslemTipi" msprop:Generator_ColumnVarNameInTable="columnIslemTipi" msprop:Generator_ColumnPropNameInRow="IslemTipi" msprop:Generator_ColumnPropNameInTable="IslemTipiColumn" msprop:Generator_UserColumnName="IslemTipi" type="xs:short" minOccurs="0" />
+              <xs:element name="EvrakSeriNo" msprop:Generator_ColumnVarNameInTable="columnEvrakSeriNo" msprop:Generator_ColumnPropNameInRow="EvrakSeriNo" msprop:Generator_ColumnPropNameInTable="EvrakSeriNoColumn" msprop:Generator_UserColumnName="EvrakSeriNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tutar" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTutar" msprop:Generator_ColumnPropNameInRow="Tutar" msprop:Generator_ColumnPropNameInTable="TutarColumn" msprop:Generator_UserColumnName="Tutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="EskiTutar" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEskiTutar" msprop:Generator_ColumnPropNameInRow="EskiTutar" msprop:Generator_ColumnPropNameInTable="EskiTutarColumn" msprop:Generator_UserColumnName="EskiTutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VadeTarihi" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVadeTarihi" msprop:Generator_ColumnPropNameInRow="VadeTarihi" msprop:Generator_ColumnPropNameInTable="VadeTarihiColumn" msprop:Generator_UserColumnName="VadeTarihi" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ParaBirimi" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnParaBirimi" msprop:Generator_ColumnPropNameInRow="ParaBirimi" msprop:Generator_ColumnPropNameInTable="ParaBirimiColumn" msprop:Generator_UserColumnName="ParaBirimi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DovizCinsi" msprop:Generator_ColumnVarNameInTable="columnDovizCinsi" msprop:Generator_ColumnPropNameInRow="DovizCinsi" msprop:Generator_ColumnPropNameInTable="DovizCinsiColumn" msprop:Generator_UserColumnName="DovizCinsi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DovizTutari" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDovizTutari" msprop:Generator_ColumnPropNameInRow="DovizTutari" msprop:Generator_ColumnPropNameInTable="DovizTutariColumn" msprop:Generator_UserColumnName="DovizTutari" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DovizKuru" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDovizKuru" msprop:Generator_ColumnPropNameInRow="DovizKuru" msprop:Generator_ColumnPropNameInTable="DovizKuruColumn" msprop:Generator_UserColumnName="DovizKuru" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Fark" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFark" msprop:Generator_ColumnPropNameInRow="Fark" msprop:Generator_ColumnPropNameInTable="FarkColumn" msprop:Generator_UserColumnName="Fark" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CariCikisKontrolCekleri" msprop:Generator_TableClassName="CariCikisKontrolCekleriDataTable" msprop:Generator_TableVarName="tableCariCikisKontrolCekleri" msprop:Generator_RowChangedName="CariCikisKontrolCekleriRowChanged" msprop:Generator_TablePropName="CariCikisKontrolCekleri" msprop:Generator_RowDeletingName="CariCikisKontrolCekleriRowDeleting" msprop:Generator_RowChangingName="CariCikisKontrolCekleriRowChanging" msprop:Generator_RowEvHandlerName="CariCikisKontrolCekleriRowChangeEventHandler" msprop:Generator_RowDeletedName="CariCikisKontrolCekleriRowDeleted" msprop:Generator_RowClassName="CariCikisKontrolCekleriRow" msprop:Generator_UserTableName="CariCikisKontrolCekleri" msprop:Generator_RowEvArgName="CariCikisKontrolCekleriRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CariID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCariID" msprop:Generator_ColumnPropNameInRow="CariID" msprop:Generator_ColumnPropNameInTable="CariIDColumn" msprop:Generator_UserColumnName="CariID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HesapKodu" msprop:Generator_ColumnVarNameInTable="columnHesapKodu" msprop:Generator_ColumnPropNameInRow="HesapKodu" msprop:Generator_ColumnPropNameInTable="HesapKoduColumn" msprop:Generator_UserColumnName="HesapKodu" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tarih" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTarih" msprop:Generator_ColumnPropNameInRow="Tarih" msprop:Generator_ColumnPropNameInTable="TarihColumn" msprop:Generator_UserColumnName="Tarih" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IslemTipi" msprop:Generator_ColumnVarNameInTable="columnIslemTipi" msprop:Generator_ColumnPropNameInRow="IslemTipi" msprop:Generator_ColumnPropNameInTable="IslemTipiColumn" msprop:Generator_UserColumnName="IslemTipi" type="xs:short" minOccurs="0" />
+              <xs:element name="EvrakSeriNo" msprop:Generator_ColumnVarNameInTable="columnEvrakSeriNo" msprop:Generator_ColumnPropNameInRow="EvrakSeriNo" msprop:Generator_ColumnPropNameInTable="EvrakSeriNoColumn" msprop:Generator_UserColumnName="EvrakSeriNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tutar" msprop:Generator_ColumnVarNameInTable="columnTutar" msprop:Generator_ColumnPropNameInRow="Tutar" msprop:Generator_ColumnPropNameInTable="TutarColumn" msprop:Generator_UserColumnName="Tutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VadeTarihi" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVadeTarihi" msprop:Generator_ColumnPropNameInRow="VadeTarihi" msprop:Generator_ColumnPropNameInTable="VadeTarihiColumn" msprop:Generator_UserColumnName="VadeTarihi" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ParaBirimi" msprop:Generator_ColumnVarNameInTable="columnParaBirimi" msprop:Generator_ColumnPropNameInRow="ParaBirimi" msprop:Generator_ColumnPropNameInTable="ParaBirimiColumn" msprop:Generator_UserColumnName="ParaBirimi" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="DovizCinsi" msprop:Generator_ColumnVarNameInTable="columnDovizCinsi" msprop:Generator_ColumnPropNameInRow="DovizCinsi" msprop:Generator_ColumnPropNameInTable="DovizCinsiColumn" msprop:Generator_UserColumnName="DovizCinsi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DovizKuru" msprop:Generator_ColumnVarNameInTable="columnDovizKuru" msprop:Generator_ColumnPropNameInRow="DovizKuru" msprop:Generator_ColumnPropNameInTable="DovizKuruColumn" msprop:Generator_UserColumnName="DovizKuru" type="xs:decimal" minOccurs="0" />
+              <xs:element name="EskiDoviz" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEskiDoviz" msprop:Generator_ColumnPropNameInRow="EskiDoviz" msprop:Generator_ColumnPropNameInTable="EskiDovizColumn" msprop:Generator_UserColumnName="EskiDoviz" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DovizFarki" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDovizFarki" msprop:Generator_ColumnPropNameInRow="DovizFarki" msprop:Generator_ColumnPropNameInTable="DovizFarkiColumn" msprop:Generator_UserColumnName="DovizFarki" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="YeniDoviz" msprop:Generator_ColumnVarNameInTable="columnYeniDoviz" msprop:Generator_ColumnPropNameInRow="YeniDoviz" msprop:Generator_ColumnPropNameInTable="YeniDovizColumn" msprop:Generator_UserColumnName="YeniDoviz" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
